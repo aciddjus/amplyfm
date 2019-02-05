@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, shrink-to-fit=no">
+	<meta name="robots" content="noindex">
+	<title>Amplyfm</title>
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="css/share-button.min.css">
+	<link rel="stylesheet" href="css/nouislider.min.css">
+	<link rel="stylesheet" href="css/artist.css">
+</head>
+<body>
+	<div class="header-shadov"></div>
+	<div class="loader" style="position:fixed;width:100%;height:100%;opacity:1;background-color:#2c3e50;z-index:9999;transition: .4s ease-in-out">
+		<div class="triangle-wrapper">
+			<div class="triangle triangle-1"></div>
+			<div class="triangle triangle-2"></div>
+			<div class="triangle triangle-3"></div>
+			<div class="triangle triangle-4"></div>
+			<div class="triangle triangle-5"></div>
+		</div>
+	</div>
+	<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Artist not found!</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Sorry, but the artist you have searched for is not in the <a href="http://www.last.fm/">Last.fm</a> database. Try checking your spelling or search for another artist.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<button type="button" class="errorButton" data-toggle="modal" data-target="#errorModal"></button>
+	<div class="modal fade" id="lyricsModal" tabindex="-1" role="dialog" aria-labelledby="lyricsModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel"></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<pre></pre>
+				</div>
+			</div>
+		</div>
+	</div>
+	<button type="button" class="lyricsButton" data-toggle="modal" data-target="#lyricsModal" style="display: none"></button>
+	<div class="main-cont container-fluid d-flex h-100 flex-column">
+		<div class="front-menu-expended">
+			<ul>
+				<li>
+					<div class="search mob forma2">
+						<form id="forma2" class="search__form" name="mobile" action="" method="get">
+							<div class="form-group">
+								<input type="text" class="form-control mobile" placeholder="Search" autocomplete="off">
+								<img src="image/icons/search-solid.svg" alt="Search" class="search-icon" title="Search">
+								<small class="input-choice">
+									<ul class="menu">
+										<li class="art zum"><a class='a-art active-search' href="">Artist</a></li>
+										<li class="gen"><a class='a-gen' href="">Genre</a></li>
+									</ul>
+								</small>
+								<div class="dropdown">
+						    		<span id="search-drop dropdown-toggle" data-toggle="dropdown" aria-expanded="true" role="button"></span>
+									<ul class="dropdown-menu artist-search" role="menu" aria-labelledby="search-drop"></ul>
+						   		</div>
+							</div>
+						</form>
+					</div>
+				</li>
+				<li class="link-to-page">
+					<nav class="cl-effect-8">
+						<a class='home' href="index.html">Home</br><span>Start over?</span><svg aria-hidden="true" data-prefix="fas" data-icon="home" class="svg-inline--fa fa-home fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#34495e" d="M488 312.7V456c0 13.3-10.7 24-24 24H348c-6.6 0-12-5.4-12-12V356c0-6.6-5.4-12-12-12h-72c-6.6 0-12 5.4-12 12v112c0 6.6-5.4 12-12 12H112c-13.3 0-24-10.7-24-24V312.7c0-3.6 1.6-7 4.4-9.3l188-154.8c4.4-3.6 10.8-3.6 15.3 0l188 154.8c2.7 2.3 4.3 5.7 4.3 9.3zm83.6-60.9L488 182.9V44.4c0-6.6-5.4-12-12-12h-56c-6.6 0-12 5.4-12 12V117l-89.5-73.7c-17.7-14.6-43.3-14.6-61 0L4.4 251.8c-5.1 4.2-5.8 11.8-1.6 16.9l25.5 31c4.2 5.1 11.8 5.8 16.9 1.6l235.2-193.7c4.4-3.6 10.8-3.6 15.3 0l235.2 193.7c5.1 4.2 12.7 3.5 16.9-1.6l25.5-31c4.2-5.2 3.4-12.7-1.7-16.9z"></path></svg></a>
+					</nav>
+				</li>
+				<li class="link-to-page">
+					<nav class="cl-effect-8">
+						<a class='about' href="about.html">About</br><span>What is Amplyfm?</span><svg aria-hidden="true" data-prefix="fas" data-icon="info-circle" class="svg-inline--fa fa-info-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#34495e" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg></a>
+					</nav>
+				</li>
+				<li class="link-to-page">
+					<nav class="cl-effect-8">
+						<a class='git' href="https://github.com/aciddjus/amplyfm" target="_blank">GitHub</br><span>Source code.</span><svg aria-hidden="true" data-prefix="fab" data-icon="github" class="svg-inline--fa fa-github fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="#34495e" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></a>
+					</nav>
+				</li>
+				<div class="copy">
+					<svg aria-hidden="true" data-prefix="far" data-icon="copyright" class="svg-inline--fa fa-copyright fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#bdc3c7" d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 448c-110.532 0-200-89.451-200-200 0-110.531 89.451-200 200-200 110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200zm107.351-101.064c-9.614 9.712-45.53 41.396-104.065 41.396-82.43 0-140.484-61.425-140.484-141.567 0-79.152 60.275-139.401 139.762-139.401 55.531 0 88.738 26.62 97.593 34.779a11.965 11.965 0 0 1 1.936 15.322l-18.155 28.113c-3.841 5.95-11.966 7.282-17.499 2.921-8.595-6.776-31.814-22.538-61.708-22.538-48.303 0-77.916 35.33-77.916 80.082 0 41.589 26.888 83.692 78.277 83.692 32.657 0 56.843-19.039 65.726-27.225 5.27-4.857 13.596-4.039 17.82 1.738l19.865 27.17a11.947 11.947 0 0 1-1.152 15.518z"></path></svg>
+					<p><script>var year=(new Date()).getFullYear();document.write(year)</script>&nbsp;Amplyfm</p>
+				</div>
+			</ul>
+		</div>
+		<div class="row header-row">
+			<header>
+				<div class="row no-gutters">
+					<div class="spinner">
+						<div class="rect1"></div>
+						<div class="rect2"></div>
+						<div class="rect3"></div>
+						<div class="rect4"></div>
+						<div class="rect5"></div>
+					</div>
+					<div class="col-3 first-half">
+						<a class='logo' href="index.html">
+							<img src="image/logo.png" alt="">
+							<span></span>
+							<p>amplyfm</p>
+						</a>
+					</div>
+					<div class="col-9 second-half">
+						<div id="menuToggle" title="Menu">
+							<input type="checkbox"/>
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+						<div class="search desk forma3">
+							<form id="forma3" class="search__form" name="desktop" action="" method="get">
+								<div class="form-group">
+									<input type="text" class="form-control desktop" placeholder="Search" autocomplete="off">
+									<img src="image/icons/search-solid.svg" alt="Search" class="search-icon" title="Search">
+									<small class="input-choice">
+										<ul>
+											<li class="art"><a class='a-art active-search' href="">Artist</a></li>
+											<li class="gen"><a class='a-gen' href="">Genre</a></li>
+										</ul>
+									</small>
+									<div class="dropdown">
+							    		<span id="search-drop dropdown-toggle" data-toggle="dropdown" aria-expanded="true" role="button"></span>
+										<ul class="dropdown-menu artist-search bla" role="menu" aria-labelledby="search-drop"></ul>
+							   		</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</header>
+		</div>
+		<div class="row">
+			<main>
+				<div class="row row-main-first">
+					<div class="col-8 art-info">
+						<div class="info container-fluid d-flex flex-column">
+							<div class="row info-1 justify-content-between"></div>
+							<div class="row info-2">
+								<div class="tags"></div>
+							</div>
+							<div class="row info-3 flex-fill d-flex"></div>
+							<span class='expendBio'></span>
+						</div>
+					</div>
+					<div class="col-4 yt-player-cont">
+						<div class="yt-overlay"></div>
+						<div id="player"></div>
+					</div>
+				</div>
+				<div class="row row-main-second">
+					<div class="col-8 track-cont">
+						<div class="tracks_container">
+							<h5></h5>
+							<div class="tracks-info">
+								<ul>
+									<li>Title</li>
+									<li>Lyrics</li>
+								</ul>
+							</div>
+							<ul class="tracks main-tracks"></ul>
+						</div>
+					</div>
+					<div class="col-4 similarTop">
+						<div class="modal-content noSimilarError">
+							<div class="modal-header">
+								<h6 class="modal-title" id="exampleModalLabel">No similar artists found!</h6>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								  <span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p>Sorry, but we couldn't find similar artists for <span></span> in the <a href="http://www.last.fm/">Last.fm</a> database.</p>
+							</div>
+						</div>
+						<h5></h5>
+						<div class="row rowds">
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+		<div class="row align-items-end">
+			<footer>
+				<div class="playlist">
+					<div class="tracks_container">
+						<div class="playlist-header">
+							<h5></h5>
+						</div>
+							<div class="tracks-info">
+								<ul>
+									<li>Title</li>
+									<li>Lyrics</li>
+								</ul>
+							</div>
+						<ul class="tracks playlist-tracks"></ul>
+					</div>
+				</div>
+				<div id='duration_slider'></div>
+				<div class="row no-gutters ">
+					<div class="col-4 first-half">
+						<div class="currently-playing"></div>
+					</div>
+					<div class="col-4 second-half">
+						<svg aria-hidden="true" data-prefix="fas" data-icon="redo-alt" class="repeatPlay svg-inline--fa fa-redo-alt fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><title>Repeat Song</title><path fill="#34495e" d="M256.455 8c66.269.119 126.437 26.233 170.859 68.685l35.715-35.715C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.75c-30.864-28.899-70.801-44.907-113.23-45.273-92.398-.798-170.283 73.977-169.484 169.442C88.764 348.009 162.184 424 256 424c41.127 0 79.997-14.678 110.629-41.556 4.743-4.161 11.906-3.908 16.368.553l39.662 39.662c4.872 4.872 4.631 12.815-.482 17.433C378.202 479.813 319.926 504 256 504 119.034 504 8.001 392.967 8 256.002 7.999 119.193 119.646 7.755 256.455 8z"></path></svg>
+						<img class="fa-pause-circle pause plpa" src="image/icons/pause-circle-solid.svg" alt="" title="Play / Pause">
+						<i class="vol">
+							<img class="volume fa-volume-up" src="image/icons/volume-up-solid.svg" alt="" title="Volume"/>
+							<div id='volume_slider'></div>
+						</i>
+					</div>
+					<div class="col-4 third-half">
+						<div class='video_duration'>
+							<span class='current'></span>&nbsp;-&nbsp;<span class='total'></span>
+						</div>
+						<share-button title="Share Song"></share-button>
+						<svg aria-hidden="true" data-prefix="fas" data-icon="share-alt" class="svg-inline--fa fa-share-alt fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><title>Share Song</title><path fill="#34495e" d="M352 320c-22.608 0-43.387 7.819-59.79 20.895l-102.486-64.054a96.551 96.551 0 0 0 0-41.683l102.486-64.054C308.613 184.181 329.392 192 352 192c53.019 0 96-42.981 96-96S405.019 0 352 0s-96 42.981-96 96c0 7.158.79 14.13 2.276 20.841L155.79 180.895C139.387 167.819 118.608 160 96 160c-53.019 0-96 42.981-96 96s42.981 96 96 96c22.608 0 43.387-7.819 59.79-20.895l102.486 64.054A96.301 96.301 0 0 0 256 416c0 53.019 42.981 96 96 96s96-42.981 96-96-42.981-96-96-96z"></path></svg>
+						<svg class='playlist-icon' xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+						width="24" height="24"viewBox="0 0 224 224"style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><title>Playlist</title><path d="M0,224v-224h224v224z" fill="none"></path><g class='playlistColor' fill="#34495e"><g id="surface1"><path d="M149.33333,28v103.83333c-5.50521,-1.38541 -11.84896,-1.64062 -18.66667,0c-20.63541,4.92188 -37.33333,23.1875 -37.33333,40.54167c0,17.35417 16.69792,27.38021 37.33333,22.45833c20.05209,-4.8125 36.16667,-22.16667 37.04167,-39.08333h0.29167v-90.41667h37.33333v-37.33333zM18.66667,37.33333v18.66667h121.33333v-18.66667zM18.66667,84v18.66667h121.33333v-18.66667zM18.66667,130.66667v18.66667h72.33333c4.59375,-7.29167 11.41146,-13.74479 19.25,-18.66667zM18.66667,177.33333v18.66667h75.83333c-5.46875,-4.92188 -8.82291,-11.33854 -9.91667,-18.66667z"></path></g></g></g></svg>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<!-- END Bootstrap -->
+	<script src="js/nouislider.min.js"></script>
+	<script src="js/share-button.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/artist.js"></script>
+</body>
+</html>
