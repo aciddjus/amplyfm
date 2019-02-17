@@ -1382,7 +1382,7 @@ figure.effect-lily:hover h2 {
 	position: fixed;
 	bottom: -110px;
 	width: 100%;
-	z-index: 100 !important;
+	z-index: 1100 !important;
 }
 
 footer {
