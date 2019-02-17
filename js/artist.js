@@ -1384,6 +1384,7 @@ function loadArtistOrGenre(ime) {
 		} 
 		$('#lyricsModal .modal-title').append(artistName + " - " + trackName);
 		$('#lyricsModal .modal-body pre').append(lyrics);
+		$('#lyricsModal .modal-body').animate({ scrollTop: 0 }, "fast");
 		$('.lyricsButton').trigger('click');
 	});
 	// Load tracks to playlist
