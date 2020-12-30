@@ -365,7 +365,7 @@ $.fn.yt = function(options){
 	var pathnameLink = window.location.href;
 
 	var url = "https://www.googleapis.com/youtube/v3/search?videoDefinition=any&part=snippet&videoEmbeddable=true&q="
-			  + imeBenda + "+" + imePesme + "&part=contentDetails&type=video&maxResults=10&key=" + apikey;
+			  + imeBenda + "+" + imePesme + "&type=video&maxResults=10&key=" + apikey;
 	// load new iframe src 		  
 	function loadIframe(url) {
 	    var $iframe = $('#player');
